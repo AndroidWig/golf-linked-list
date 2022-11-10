@@ -31,9 +31,9 @@ struct golfCourse{
     int par[18];
     int playercounter;
     PlayerNode * head;
-    int God;
-    PlayerNode * godhead;
-    PlayerNode * wacky;
+    int newplayer;
+    PlayerNode * newhead;
+    PlayerNode * newhead2;
 };
 
 Player * newPlayer(const char * name, Course course){
@@ -234,7 +234,7 @@ PlayerNode * courseLeaders(Course c, int n){
     PlayerNode* newList = NULL;    // head of the new list
     PlayerNode* tail = NULL;       // point to the last node in a new list
 
-if(c->God<1) {
+if(c->newplayer<1) {
     while (current != NULL) {
         // special case for the first new node
         if (newList == NULL) {
@@ -278,7 +278,7 @@ if(c->God<1) {
             next1 = next1->next;
         }
     }
-    c->God = 1;
+    c->newplayer = 1;
     newList = newList->next;
     PlayerNode *currentp = newList;
 //PlayerNode * nextp;
@@ -291,19 +291,19 @@ if(c->God<1) {
     }
     before->next = stupid;
     stupid->next = currentp;
-    c->godhead = newList;
+    c->newhead = newList;
 }
 PlayerNode * curn;
-if(c->God != 1)  curn = newList;
-if(c->God == 1){
-    curn = c->godhead;
+if(c->newplayer != 1)  curn = newList;
+if(c->newplayer == 1){
+    curn = c->newhead;
 }
 //return curn;
 
 PlayerNode * test = curn;
 
 
-    if(c->God == 1){
+    if(c->newplayer == 1){
 
 
     }
@@ -320,17 +320,17 @@ if(n < c->playercounter) {
 
     }
     if(test->next == NULL){
-        c->wacky = test;
+        c->newhead2 = test;
         return curn;
     }
     else{
-       // c->wacky = test->next;
+       // c->newhead2 = test->next;
         test->next = NULL;
        // after = test->next;
     }
 }
 return curn;
-return c->godhead;
+return c->newhead;
 }
 int numPlayers(Course c){
     return c->playercounter;
